@@ -12,15 +12,11 @@ endtry
 
 let mapleader=","  " Set , to the leader.
 
-" Use the 'google' package by default (see http://go/vim/packages).
-source /usr/share/vim/google/google.vim
+"Load local vimrc configuration if present.
+if filereadable("./.vimrc_local")
+  source ./.vimrc_local
+endif
 
-"+--------------------------------+
-"| Internal Plugins
-"+--------------------------------+
-  Glug youcompleteme-google
-  Glug codefmt
-  Glug codefmt-google
 "+--------------------------------+
 "| Vundle Plugins
 "+--------------------------------+
@@ -30,17 +26,14 @@ source /usr/share/vim/google/google.vim
   Plugin 'sjl/gundo.vim'
   Plugin 'scrooloose/nerdtree'
   Plugin 'vim-airline/vim-airline'
+  Plugin 'tpope/vim-unimpaired'
   call vundle#end()
 "+--------------------------------+
 "| Plugin Mapping and Configuration
 "+--------------------------------+
   nnoremap <leader>u :GundoToggle<CR>
   nnoremap <leader>n :NERDTreeToggle<CR>
-
   let g:airline_section_b="%{strftime('%c')}"
-  
-  "Remove C++ YouCompleteMe support.
-  let g:ycm_filetype_blacklist = {'cpp': 1, 'c': 1}
 "+--------------------------------+
 "| Tabs and Spaces 
 "+--------------------------------+
@@ -56,6 +49,9 @@ source /usr/share/vim/google/google.vim
   set foldcolumn=2  " Adds a bit of space to the left of the number line.
   set laststatus=2  " Always show the status line.
   set cmdheight=2  " Height of the command bar at the bottom.
+ 
+  set backspace=indent,eol,start
+  set hidden " Hide buffers rather than closing them.
   
   set wildmenu  " Command menu visual auto-complete.
   set lazyredraw  " Only redraw screen when necessary (not in the middle of a macro).
@@ -66,10 +62,11 @@ source /usr/share/vim/google/google.vim
 "+--------------------------------+
 "| Searching and Replacing 
 "+--------------------------------+
-  set ignorecase  " Use smartcase
-  set incsearch           " search as characters are entered
-  set hlsearch            " highlight matches
-  set magic   " Enabled regular expressions.
+  set ignorecase " Ignore case when searching.
+  set smartcase " What is smartcase?
+  set incsearch " search as characters are entered
+  set hlsearch " highlight matches
+  set magic " Enabled regular expressions.
   " remove search highlights
   nnoremap <leader>/ :nohlsearch<CR>
 "+--------------------------------+
@@ -77,6 +74,7 @@ source /usr/share/vim/google/google.vim
 "+--------------------------------+
   set foldenable  " Show folds.
   set foldnestmax=10  " Stop folding after x nested folds.
+  set foldlevel=10 " Set the default fold level high (don't fold most folds) 
   set foldmethod=indent  " Folds based on indentation level. :help foldmethod for others.
   " Space shows/hides folds.
   noremap <space> za  
@@ -101,8 +99,6 @@ source /usr/share/vim/google/google.vim
 "+--------------------------------+
 "| Open, Save, and Close Automation
 "+--------------------------------+
-  " Auto formats BUILD files on save.
-  autocmd FileType bzl AutoFormatBuffer buildifier 
   " Remove trailing whitespacesfrom python files on save.
   autocmd BufWrite *.py :%s/\s\+$// 
   " Return to last edit position when opening files (You want this!)
@@ -111,5 +107,4 @@ source /usr/share/vim/google/google.vim
   nnoremap <leader>s :mksession<CR>
 
 filetype plugin indent on  " Turns on filetype detection / indentation.
-
 
