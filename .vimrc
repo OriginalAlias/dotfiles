@@ -91,6 +91,7 @@ let mapleader=","  " Set , to the leader.
   set laststatus=2  " Always show the status line.
   set cmdheight=2  " Height of the command bar at the bottom.
 
+  set timeoutlen=1000 ttimeoutlen=0 " Shorten keypress timeout (faster Esc)
 
   " Python specific config
 
