@@ -2,13 +2,12 @@
 
 set nocompatible
 
-syntax on
-
 try
   colorscheme jellybeans
 endtry
 
-let mapleader=","  " Set , to the leader.
+
+let mapleader="\<space>"  " Set , to the leader.
 
 " {{{ Vundle Plugins
 
@@ -28,9 +27,18 @@ let mapleader=","  " Set , to the leader.
 
   Plugin 'tpope/vim-surround'
   Plugin 'ctrlpvim/ctrlp.vim'
+  Plugin 'ctrlp-py-matcher'
   " Plugin 'valloric/youcompleteme'
   Plugin 'mileszs/ack.vim'
   Plugin 'christoomey/vim-tmux-navigator'
+  Plugin 'mhinz/vim-signify'
+  Plugin 'SirVer/ultisnips'
+  Plugin 'honza/vim-snippets'
+
+  " Typescript Plugins
+  Plugin 'Shougo/vimproc.vim'
+  Plugin 'leafgarland/typescript-vim'
+  Plugin 'Quramy/tsuquyomi'
 
   call vundle#end()
 
@@ -42,6 +50,36 @@ let mapleader=","  " Set , to the leader.
 
   nnoremap <leader>u :GundoToggle<CR>
   nnoremap <leader>n :NERDTreeToggle<CR>
+  
+  " ---- {{{ CtrlP Settings }}} ----
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+        \ --ignore .git
+        \ --ignore .svn
+        \ --ignore .hg
+        \ --ignore .DS_Store
+        \ --ignore "**/*.pyc"
+        \ --ignore .git5_specs
+        \ --ignore review
+        \ -g ""'
+
+  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+  " ---- From Vim: Walking to Running
+  let g:ctrlp_cmd = 'CtrlPMixed'
+  let g:ctrlp_custom_ignore = {
+    \ 'dir': '\.(git|svn|hg)$\|_site\|\.jsexe$\|node_modules$',
+    \ 'file': '\v\.(o|hi|js_o|js_hi|dyn_hi|dyn_o)',
+    \ }
+  let g:ctrlp_working_path_mode = 0
+  let g:ctrlp_root_markers = ['.ctrlp_root']
+  let g:ctrlp_max_files = 30000
+  let g:ctrlp_follow_symlinks = 1
+  let g:ctrlp_switch_buffer = 2
+  nmap <C-b> :CtrlPBuffer<CR>
+  nmap <C-o> :CtrlPLine<CR>
+
+  " ---- {{{ Typscript Settings}}} ----
+  let g:tsuquyomi_use_dev_node_module = 2
+  nnoremap <silent> <leader>h :echo tsuquyomi#hint()<CR>
 
   " ---- {{{ Syntastic Settings}}} ----
 
@@ -52,6 +90,17 @@ let mapleader=","  " Set , to the leader.
   set statusline+=%*
 
   let g:syntastic_python_checkers = ['pyflakes', 'gpylint']
+  " ---- {{{ UltiSnips }}} ----
+    let g:UltiSnipsEditSplit = "vertical"
+    let g:UltiSnipsExpandTrigger = "<C-e>"
+    let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
+    let g:UltiSnipsSnippetDirectories = ["UltiSnips"]
+    let g:UltiSnipsJumpForwardTrigger = "<CR>"
+    let g:UltiSnipsJumpBackwardsTrigger = "<C-s>"
+
+  " ---- {{{ Signify Settings }}} ----
+  let g:signify_vcs_cmds = {'perforce':'DIFF=%d" -U0" citcdiff %f || [[ $? == 1 ]]'}
+  let g:signify_vcs_list = ['perforce', 'git']
 
   " ---- {{{ Airline Settings }}} ----
 
@@ -90,14 +139,19 @@ let mapleader=","  " Set , to the leader.
   set foldcolumn=2  " Adds a bit of space to the left of the number line.
   set laststatus=2  " Always show the status line.
   set cmdheight=2  " Height of the command bar at the bottom.
+  set mouse=a  " Turn on the mouse!
+  set ttymouse=sgr
 
   set timeoutlen=1000 ttimeoutlen=0 " Shorten keypress timeout (faster Esc)
 
   " Python specific config
 
-  autocmd FileType python setlocal colorcolumn=81 tabstop=2 softtabstop=2
+  autocmd FileType python setlocal tabstop=2 softtabstop=2
+  set colorcolumn=+1
   autocmd FileType python highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
   autocmd FileType python match OverLength /\%81v.*/
+
+  syntax sync fromstart " Potential fix for syntax highlighting breaking.
 
   set backspace=indent,eol,start
   set hidden " Hide buffers rather than closing them.
@@ -128,8 +182,6 @@ let mapleader=","  " Set , to the leader.
   set foldnestmax=10  " Stop folding after x nested folds.
   set foldlevel=10 " Set the default fold level high (don't fold most folds) 
   set foldmethod=indent  " Folds based on indentation level. :help foldmethod for others.
-  " Space shows/hides folds.
-  noremap <space> za  
 
 " }}}
 " {{{ Movement and Buffers 
@@ -163,14 +215,20 @@ let mapleader=","  " Set , to the leader.
   nnoremap <F9> :bn<CR>
   nnoremap <F7> :bp<CR>
 
+  " Splits
+  nnoremap <leader><S-\> :vsp<CR>
+  nnoremap <leader>- :sp<CR>
+  
 " }}}
 " {{{ Open, Save, and Close Automation
-
   " Remove trailing whitespacesfrom python files on save.
   autocmd BufWrite *.py :%s/\s\+$// 
 
   " Return to last edit position when opening files (You want this!)
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+  " Automatically size splits to 115 width
+  " autocmd WinEnter *.js vertical resize 85
 
   " Save session. Reopen session with vim -S. Reopens all windows.
   nnoremap <leader>s :mksession<CR>
@@ -178,10 +236,7 @@ let mapleader=","  " Set , to the leader.
   autocmd BufEnter * lcd %:p:h  " Set current buffer's directory to working dir.
 
   set autoread " Automatically update file if external change is detected.
-
-" }}}
-" {{{ Undo Settings
-
+" {{{ Undo Settings }}}
   set undodir=~/.vim_undo
   set undolevels=5000
   set undofile
@@ -189,7 +244,9 @@ let mapleader=","  " Set , to the leader.
   let g:gundo_width = 60
   let g:gundo_preview_height = 40
   let g:gundo_right = 1
-
-" }}}
-
+" {{{ Markdown Files }}}
+  autocmd BufNewFile,BufRead *.md setlocal textwidth=80
+  autocmd BufNewFile,BufRead *.md setfiletype markdown
+" 
 filetype plugin indent on  " Turns on filetype detection / indentation.
+syntax on
