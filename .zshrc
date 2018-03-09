@@ -92,5 +92,5 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-# DOtfiles Management system
-alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+# Dotfiles Management system
+source $HOME/.dotfilesrc

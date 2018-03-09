@@ -117,5 +117,5 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
   . /etc/bash_completion
 fi
 
-# Dotfiles management repository
-alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+# Dotfiles Management system
+source $HOME/.dotfilesrc
