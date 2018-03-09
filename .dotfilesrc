@@ -3,7 +3,7 @@ alias dotfiles='/usr/bin/git --git-dir=$MYDOTFILES/ --work-tree=$HOME'
 
 if [ -d "$HOME/dotfiles_local"]; then
   export MYDOTFILESLOCAL=$HOME/dotfiles_local
-  alias dotfiles_local='/usr/bin/git --git-dit=$MYDOTFILELOCAL/ --work-tree=$HOME'
+  alias dotfiles_local='/usr/bin/git --git-dit=$MYDOTFILESLOCAL/ --work-tree=$HOME'
 fi
 
 if [ -d "$HOME/local.env" ]; then
