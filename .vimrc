@@ -101,7 +101,6 @@ let mapleader="\<space>"  " Set , to the leader.
     let g:UltiSnipsJumpBackwardsTrigger = "<C-s>"
 
   " ---- {{{ Signify Settings }}} ----
-  let g:signify_vcs_cmds = {'perforce':'DIFF=%d" -U0" citcdiff %f || [[ $? == 1 ]]'}
   let g:signify_vcs_list = ['perforce', 'git']
 
   " ---- {{{ Airline Settings }}} ----
@@ -128,6 +127,7 @@ let mapleader="\<space>"  " Set , to the leader.
 
   set tabstop=4     " Size (in spaces) of a <TAB> character.
   set softtabstop=4 " Number of spaces to add (in edit mode) when tab is pressed
+  set shiftwidth=2  " Width of an indent.
   set expandtab     " Any <TAB> characters are expanded to spaces.
   set smartindent
   set autoindent
@@ -148,12 +148,14 @@ let mapleader="\<space>"  " Set , to the leader.
 
   " Python specific config
 
-  autocmd FileType python setlocal tabstop=2 softtabstop=2
+  autocmd FileType python setlocal tabstop=2 softtabstop=2 shiftwidth=2
   set colorcolumn=+1
   autocmd FileType python highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
   autocmd FileType python match OverLength /\%81v.*/
 
   syntax sync fromstart " Potential fix for syntax highlighting breaking.
+
+  autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
   set backspace=indent,eol,start
   set hidden " Hide buffers rather than closing them.
