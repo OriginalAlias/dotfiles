@@ -43,7 +43,7 @@ let mapleader="\<space>"  " Set , to the leader.
   call vundle#end()
 
   " Load any local machine config, if it exists.
-  if filereadable('.vimrc_local.vim')
+  if filereadable('~/.vimrc_local.vim')
     exec 'source ~/.vimrc_local.vim'
   endif
 
