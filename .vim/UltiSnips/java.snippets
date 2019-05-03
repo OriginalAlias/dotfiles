@@ -1,0 +1,61 @@
+snippet testException "Unit test for Exceptions" b
+@Test public void ${1:test_name} throws Exception {
+  ${0:set up}
+
+  ${2:Exception} exception = assertThrows($2.class, () -> ${3:method});
+  `!p snip.rv = "assertThat(exception.getCode()).isEqualTo($4)" if t[2] == "RpcException" else "assertThat(exception).hasCauseThat().isInstanceOf("`
+
+  assertThat(exception).hasCauseThat().isInstanceOf($4.class);
+  assertThat(exception.getCode()).isEqualTo($4);
+  assertThat(exception).hasMessageThat().contains("${5:exception message fragment}");
+}
+endsnippet
+
+snippet logger "Create a GoogleLogger" b
+private static final GoogleLogger logger = GoogleLogger.forEnclosingClass();
+endsnippet
+
+snippet thrownew "Throw a new exception" b
+throw new ${1:ExceptionClass}(String.format("$2",$3));
+endsnippet
+
+################## BOILERPLATE
+
+snippet action "Apps Framework Delayed Action template" b
+import com.google.apps.framework.annotations.ForRequestPath;
+import com.google.apps.framework.annotations.RequestMessage;
+import com.google.apps.framework.request.Action;
+import com.google.apps.framework.request.Rpc;
+import com.google.async.threadsafety.annotations.ThreadSafe;
+import com.google.common.util.concurrent.ListenableFuture;
+import com.google.devtools.javatools.codegen.delayed.AsyncDependencies;
+import com.google.devtools.javatools.codegen.delayed.Delayed;
+import com.google.devtools.javatools.codegen.delayed.VisibleForDelayed;
+import com.google.spanner.SpannerException;
+import com.google.trustsafety.ads.${2:package.path}.proto.${3:ProtoPackage}Proto.$1Request;
+import com.google.trustsafety.ads.$2.proto.$3Proto.$1Response;
+import com.google.trustsafety.ads.$2.service.impl.$1;
+import javax.inject.Inject;
+
+/** ${5:Comment Describing what this thing does.} */
+@ThreadSafe
+@ForRequestPath(rpc = "/$2.$3.$1")
+final class ${1:RpcName}Action extends Delayed_$1Action implements Action {
+
+  @Inject
+  $1Action(AsyncDependencies asyncDependencies) {
+	super(asyncDependencies);
+  }
+
+  @Rpc
+  public ListenableFuture<$1Response> execute(@RequestMessage $1Request request)
+      throws SpannerException {
+    return generateResponse($0);
+  }
+
+  @VisibleForDelayed
+  $1Response generateResponse(@Delayed ${4:ResponseClass} ${4/(\w+)/\l$1/}) {
+    return $1Response.newBuilder().set$4(${4/(\w+)/\l$1/}).build();
+  }
+}
+endsnippet

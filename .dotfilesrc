@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# This file is used to configure the dotfiles management system, and to source
+# any local configuration and environment variables, functions, aliases, etc.
+
+# Configure dotofiles environment.
+export MYDOTFILES=$HOME/dotfiles
+alias dotfiles='/usr/bin/git --git-dir=$MYDOTFILES/ --work-tree=$HOME'
+
+# Load local environment and config files.
+if [ -d "$HOME/dotfiles_local" ]; then
+  export MYDOTFILESLOCAL=$HOME/dotfiles_local
+  alias dotfiles_local='/usr/bin/git \
+      --git-dir=$MYDOTFILESLOCAL/ \
+      --work-tree=$HOME'
+  for file in $HOME/dotfiles_local/**/*.bash; do
+    source $file
+  done
+fi
