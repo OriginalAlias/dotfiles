@@ -112,7 +112,6 @@ let mapleader="\<space>"  " Set , to the leader.
   let g:syntastic_python_checkers = ['pyflakes', 'gpylint']
   " ---- {{{ UltiSnips }}} ----
     let g:UltiSnipsEditSplit = "vertical"
-    unmap <C-e>
     let g:UltiSnipsExpandTrigger = "<C-e>"
     let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
     let g:UltiSnipsSnippetDirectories = ["UltiSnips"]
