@@ -16,11 +16,7 @@ let mapleader="\<space>"  " Set , to the leader.
 
   Plugin 'VundleVim/Vundle.vim'
   Plugin 'sjl/gundo.vim'
-<<<<<<< HEAD
-  Plugin 'scrooloose/nerdtree'
-=======
   " Plugin 'scrooloose/nerdtree'
->>>>>>> c5b3fae6a836fab15fd65e7f2aeb6fc1b78dc3a9
   Plugin 'scrooloose/syntastic'
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
@@ -38,42 +34,26 @@ let mapleader="\<space>"  " Set , to the leader.
   Plugin 'mhinz/vim-signify'
   Plugin 'SirVer/ultisnips'
   Plugin 'honza/vim-snippets'
-<<<<<<< HEAD
-=======
   Plugin 'natebosch/vim-lsc'
   Plugin 'markonm/traces.vim'
->>>>>>> c5b3fae6a836fab15fd65e7f2aeb6fc1b78dc3a9
 
   " Typescript Plugins
   Plugin 'Shougo/vimproc.vim'
   Plugin 'leafgarland/typescript-vim'
   Plugin 'Quramy/tsuquyomi'
-<<<<<<< HEAD
-=======
   Plugin 'junegunn/fzf'
->>>>>>> c5b3fae6a836fab15fd65e7f2aeb6fc1b78dc3a9
 
   call vundle#end()
 
   " Load any local machine config, if it exists.
-<<<<<<< HEAD
   if filereadable('~/.vimrc_local.vim')
     exec 'source ~/.vimrc_local.vim'
-=======
-  if !empty(glob('~/.vimrc_local.vim'))
-    source ~/.vimrc_local.vim
->>>>>>> c5b3fae6a836fab15fd65e7f2aeb6fc1b78dc3a9
   endif
 
 " }}}
 " {{{ Plugin Mapping and Configuration
 
   nnoremap <leader>u :GundoToggle<CR>
-<<<<<<< HEAD
-  nnoremap <leader>n :NERDTreeToggle<CR>
-  
-=======
-  " nnoremap <leader>n :NERDTreeToggle<CR>
 
   let g:lsc_server_commands = {'java': '127.0.0.1:5800'}
   let g:lsc_auto_map = {
@@ -90,7 +70,6 @@ let mapleader="\<space>"  " Set , to the leader.
   
   " Removed: \ 'PreviousReference': '<C-p>',
 
->>>>>>> c5b3fae6a836fab15fd65e7f2aeb6fc1b78dc3a9
   " ---- {{{ CtrlP Settings }}} ----
   let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
         \ --ignore .git
@@ -110,11 +89,7 @@ let mapleader="\<space>"  " Set , to the leader.
     \ 'file': '\v\.(o|hi|js_o|js_hi|dyn_hi|dyn_o)',
     \ }
   let g:ctrlp_working_path_mode = 0
-<<<<<<< HEAD
-  let g:ctrlp_root_markers = ['.ctrlp_root']
-=======
   let g:ctrlp_root_markers = ['METADATA']
->>>>>>> c5b3fae6a836fab15fd65e7f2aeb6fc1b78dc3a9
   let g:ctrlp_max_files = 30000
   let g:ctrlp_follow_symlinks = 1
   let g:ctrlp_switch_buffer = 2
@@ -143,11 +118,7 @@ let mapleader="\<space>"  " Set , to the leader.
     let g:UltiSnipsJumpBackwardsTrigger = "<C-s>"
 
   " ---- {{{ Signify Settings }}} ----
-<<<<<<< HEAD
-  let g:signify_vcs_list = ['perforce', 'git']
-=======
   let g:signify_vcs_list = ['perforce', 'hg', 'git']
->>>>>>> c5b3fae6a836fab15fd65e7f2aeb6fc1b78dc3a9
 
   " ---- {{{ Airline Settings }}} ----
 
@@ -187,13 +158,6 @@ let mapleader="\<space>"  " Set , to the leader.
   set foldcolumn=2  " Adds a bit of space to the left of the number line.
   set laststatus=2  " Always show the status line.
   set cmdheight=2  " Height of the command bar at the bottom.
-<<<<<<< HEAD
-  set mouse=a  " Turn on the mouse!
-  set ttymouse=sgr
-=======
-  " set mouse=a  " Turn on the mouse!
-  " set ttymouse=sgr
->>>>>>> c5b3fae6a836fab15fd65e7f2aeb6fc1b78dc3a9
 
   set timeoutlen=1000 ttimeoutlen=0 " Shorten keypress timeout (faster Esc)
 
@@ -252,16 +216,11 @@ let mapleader="\<space>"  " Set , to the leader.
   " move to beginning/end of line
   nnoremap H ^
   nnoremap L g_
-<<<<<<< HEAD
-  nnoremap J 5j
-  nnoremap K 5k
-=======
 
   " Remove default mapings for J and K so that I can learn to stop using them
   " as 5j and 5k without clobbering files as soon as I open them.
   nnoremap J <Nop>
   nnoremap K <Nop>
->>>>>>> c5b3fae6a836fab15fd65e7f2aeb6fc1b78dc3a9
 
   " No shift before command!.
   nnoremap ; :
@@ -279,10 +238,6 @@ let mapleader="\<space>"  " Set , to the leader.
   nnoremap <F7> :bp<CR>
 
   " Splits
-<<<<<<< HEAD
-  nnoremap <leader><S-\> :vsp<CR>
-  nnoremap <leader>- :sp<CR>
-=======
   nnoremap <leader><_> :vsp<CR>
   nnoremap <leader>- :sp<CR>
 
@@ -290,7 +245,6 @@ let mapleader="\<space>"  " Set , to the leader.
  let g:netrw_banner = 0
  let g:netrw_liststyle = 3 " narrow
  let g:netrw_keepdir = 0 " Keep browsing dir the same as current directory
->>>>>>> c5b3fae6a836fab15fd65e7f2aeb6fc1b78dc3a9
   
 " }}}
 " {{{ Open, Save, and Close Automation

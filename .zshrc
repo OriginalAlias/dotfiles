@@ -94,9 +94,3 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 #
 # Dotfiles Management system
 source $HOME/.dotfilesrc
-<<<<<<< HEAD
-=======
-
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
->>>>>>> c5b3fae6a836fab15fd65e7f2aeb6fc1b78dc3a9
