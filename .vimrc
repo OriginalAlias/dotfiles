@@ -16,19 +16,14 @@ let mapleader="\<space>"  " Set , to the leader.
 
   Plugin 'VundleVim/Vundle.vim'
   Plugin 'sjl/gundo.vim'
-  " Plugin 'scrooloose/nerdtree'
   Plugin 'scrooloose/syntastic'
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
   Plugin 'tpope/vim-unimpaired'
   Plugin 'Yggdroot/indentLine'
-
-  " ---- {{{ NEW }}} ----
-
   Plugin 'tpope/vim-surround'
   Plugin 'ctrlpvim/ctrlp.vim'
   Plugin 'ctrlp-py-matcher'
-  " Plugin 'valloric/youcompleteme'
   Plugin 'mileszs/ack.vim'
   Plugin 'christoomey/vim-tmux-navigator'
   Plugin 'mhinz/vim-signify'
@@ -36,6 +31,10 @@ let mapleader="\<space>"  " Set , to the leader.
   Plugin 'honza/vim-snippets'
   Plugin 'natebosch/vim-lsc'
   Plugin 'markonm/traces.vim'
+
+  " ---- {{{ NEW }}} ----
+  Plugin 'vimwiki/vimwiki'
+
 
   " Typescript Plugins
   Plugin 'Shougo/vimproc.vim'
@@ -138,6 +137,9 @@ let mapleader="\<space>"  " Set , to the leader.
   endif
 
   let g:airline_symbols.branch = '⎇'
+
+  let g:vimwiki_list = [{'path': '~/Notes/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " }}}
 " {{{ Tabs and Spaces 
