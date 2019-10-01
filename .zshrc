@@ -94,3 +94,6 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 #
 # Dotfiles Management system
 source $HOME/.dotfilesrc
+
+# Hopefully fixes random Vim freezing problem.
+stty -ixon
