@@ -138,8 +138,7 @@ let mapleader="\<space>"  " Set , to the leader.
 
   let g:airline_symbols.branch = '⎇'
 
-  let g:vimwiki_list = [{'path': '~/Notes/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+  let g:vimwiki_autowriteall = 1 " Autosave wiki pages when navigating to another page.
 
 " }}}
 " {{{ Tabs and Spaces 
