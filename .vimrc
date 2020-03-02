@@ -199,9 +199,9 @@ let mapleader="\<space>"  " Set , to the leader.
 " {{{  Folding (hide code blocks) 
 
   set foldenable  " Show folds.
-  set foldnestmax=10  " Stop folding after x nested folds.
-  set foldlevel=10 " Set the default fold level high (don't fold most folds) 
-  set foldmethod=indent  " Folds based on indentation level. :help foldmethod for others.
+  set foldnestmax=2  " Stop folding after x nested folds.
+  set foldlevel=1 " Set the default fold level high (don't fold most folds) 
+  set foldmethod=syntax  " Folds based on syntax. :help foldmethod for others.
 
 " }}}
 " {{{ Movement and Buffers 
@@ -217,15 +217,7 @@ let mapleader="\<space>"  " Set , to the leader.
   " move to beginning/end of line
   nnoremap H ^
   nnoremap L g_
-
-  " Remove default mapings for J and K so that I can learn to stop using them
-  " as 5j and 5k without clobbering files as soon as I open them.
-  nnoremap J <Nop>
-  nnoremap K <Nop>
-
-  " No shift before command!.
-  nnoremap ; :
-
+  
   " highlight last inserted text
   nnoremap gV `[v`]
   
