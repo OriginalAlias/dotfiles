@@ -197,7 +197,7 @@ let mapleader="\<space>"  " Set , to the leader.
   set foldenable  " Show folds.
   set foldnestmax=2  " Stop folding after x nested folds.
   set foldlevel=1 " Set the default fold level high (don't fold most folds) 
-  set foldmethod=syntax  " Folds based on syntax. :help foldmethod for others.
+  set foldmethod=indent  " Folds based on indentation level. :help foldmethod for others.
 
 " }}}
 " {{{ Movement and Buffers 
@@ -209,10 +209,6 @@ let mapleader="\<space>"  " Set , to the leader.
   " next 'real' new line.
   nnoremap j gj
   nnoremap k gk
-  
-  " move to beginning/end of line
-  nnoremap H ^
-  nnoremap L g_
   
   " highlight last inserted text
   nnoremap gV `[v`]
