@@ -29,11 +29,15 @@ let mapleader="\<space>"  " Set , to the leader.
   Plugin 'mhinz/vim-signify'
   Plugin 'SirVer/ultisnips'
   Plugin 'honza/vim-snippets'
-  Plugin 'natebosch/vim-lsc'
   Plugin 'markonm/traces.vim'
 
   " ---- {{{ NEW }}} ----
   Plugin 'vimwiki/vimwiki'
+  
+  Plugin 'prabirshrestha/async.vim'
+  Plugin 'prabirshrestha/vim-lsp'
+  Plugin 'prabirshrestha/asyncomplete.vim'
+  Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 
 
   " Typescript Plugins
@@ -51,23 +55,16 @@ let mapleader="\<space>"  " Set , to the leader.
 
 " }}}
 " {{{ Plugin Mapping and Configuration
+ 
+  " Send async completion requests.
+  " WARNING: Might interfere with other completion plugins.
+  let g:lsp_async_completion = 1
+
+  " Enabling fuzzy completion
+  let g:asyncomplete_smart_completion = 1
+  let g:asyncomplete_auto_popup = 1
 
   nnoremap <leader>u :GundoToggle<CR>
-
-  let g:lsc_server_commands = {'java': '127.0.0.1:5800'}
-  let g:lsc_auto_map = {
-    \ 'GoToDefinition': '<C-]>',
-    \ 'FindReferences': 'gr',
-    \ 'FindImplementations': 'gI',
-    \ 'FindCodeActions': 'ga',
-    \ 'DocumentSymbol': 'go',
-    \ 'WorkspaceSymbol': 'gS',
-    \ 'ShowHover': 'v:true',
-    \ 'SignatureHelp': '<C-m>',
-    \ 'Completion': 'completefunc',
-    \}
-  
-  " Removed: \ 'PreviousReference': '<C-p>',
 
   " ---- {{{ CtrlP Settings }}} ----
   let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
@@ -93,7 +90,6 @@ let mapleader="\<space>"  " Set , to the leader.
   let g:ctrlp_follow_symlinks = 1
   let g:ctrlp_switch_buffer = 2
   nmap <C-b> :CtrlPBuffer<CR>
-  nmap <C-o> :CtrlPLine<CR>
 
   " ---- {{{ Typscript Settings}}} ----
   let g:tsuquyomi_use_dev_node_module = 2
