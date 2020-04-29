@@ -5,12 +5,11 @@
 # License: MIT
 # https://github.com/denysdovhan/spaceship-zsh-theme
 
-NEWLINE='
-'
+NEWLINE=''
 
 # PROMPT
 SPACESHIP_PROMPT_SYMBOL="${SPACESHIP_PROMPT_SYMBOL:-→}"
-SPACESHIP_PROMPT_ADD_NEWLINE="${SPACESHIP_PROMPT_ADD_NEWLINE:-true}"
+SPACESHIP_PROMPT_ADD_NEWLINE="${SPACESHIP_PROMPT_ADD_NEWLINE:-false}"
 SPACESHIP_PROMPT_SEPARATE_LINE="${SPACESHIP_PROMPT_SEPARATE_LINE:-true}"
 SPACESHIP_PROMPT_TRUNC="${SPACESHIP_PROMPT_TRUNC:-3}"
 
@@ -73,6 +72,11 @@ spaceship_current_dir() {
   echo -n "%{$fg_bold[cyan]%}"
   echo -n "%${SPACESHIP_PROMPT_TRUNC}~";
   echo -n "%{$reset_color%}"
+}
+
+spaceship_time() {
+  date_string=$(date +"%y-%m-%d %H:%M:%S %z")
+  echo -n " at %{$fg_bold[yellow]%}$date_string%{$reset_color%}"
 }
 
 # Uncommitted changes.
@@ -246,12 +250,14 @@ spaceship_return_status() {
 
 # Build prompt line
 spaceship_build_prompt() {
-  spaceship_host
+  #spaceship_host
   spaceship_current_dir
-  spaceship_git_status
-  spaceship_nvm_status
-  spaceship_ruby_version
-  spaceship_venv_status
+  #spaceship_git_status
+  #spaceship_nvm_status
+  #spaceship_ruby_version
+  #spaceship_venv_status
+  spaceship_time
+
 }
 
 # Disable python virtualenv environment prompt prefix

@@ -244,7 +244,7 @@ let mapleader="\<space>"  " Set , to the leader.
 
   " Save session. Reopen session with vim -S. Reopens all windows.
   nnoremap <leader>s :mksession<CR>
-  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions+=j
   autocmd BufEnter * lcd %:p:h  " Set current buffer's directory to working dir.
 
   set autoread " Automatically update file if external change is detected.
