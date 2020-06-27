@@ -29,16 +29,20 @@ let mapleader="\<space>"  " Set , to the leader.
   Plugin 'mhinz/vim-signify'
   Plugin 'SirVer/ultisnips'
   Plugin 'honza/vim-snippets'
+  Plugin 'natebosch/dartlang-snippets'
   Plugin 'markonm/traces.vim'
-
-  " ---- {{{ NEW }}} ----
   Plugin 'vimwiki/vimwiki'
-  
+
+  " For Cider LSP
   Plugin 'prabirshrestha/async.vim'
   Plugin 'prabirshrestha/vim-lsp'
   Plugin 'prabirshrestha/asyncomplete.vim'
   Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 
+  " ---- {{{ NEW }}} ----
+  
+  Plugin 'tpope/vim-vinegar'
+  Plugin 'dart-lang/dart-vim-plugin'
 
   " Typescript Plugins
   Plugin 'Shougo/vimproc.vim'
@@ -135,6 +139,10 @@ let mapleader="\<space>"  " Set , to the leader.
   let g:airline_symbols.branch = '⎇'
 
   let g:vimwiki_autowriteall = 1 " Autosave wiki pages when navigating to another page.
+
+" ---- {{{ Dart }}}} ---
+"
+  let g:dart_format_on_save = 1
 
 " }}}
 " {{{ Tabs and Spaces 
