@@ -4,6 +4,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+export PATH=/usr/lib/google-dartlang/bin:${PATH}
+
 # Dotfiles Management system
 source $HOME/.dotfilesrc
 

@@ -119,4 +119,3 @@ fi
 
 # Dotfiles Management system
 source $HOME/.dotfilesrc
-export PATH=/usr/lib/google-dartlang/bin:${PATH}
